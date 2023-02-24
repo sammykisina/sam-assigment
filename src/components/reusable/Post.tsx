@@ -27,17 +27,15 @@ const Post: FC<PostProps> = ({ post }) => {
       <p className="text-primary/60 first-letter:uppercase">{post?.body}</p>
 
       {/* action btn */}
-      {user?.userId === post?.userId && (
-        <div className="flex justify-end">
-          <Dropdown
-            inactive={<HiEllipsisHorizontal className="icon" />}
-            active={<HiEllipsisHorizontal className="icon" />}
-            dropdownComponent={<ManagePost post={post} />}
-            displayState={showManageProfileDropdown}
-            setDisplayState={setShowManageProfileDropdown}
-          />
-        </div>
-      )}
+      <div className="flex justify-end">
+        <Dropdown
+          inactive={<HiEllipsisHorizontal className="icon" />}
+          active={<HiEllipsisHorizontal className="icon" />}
+          dropdownComponent={<ManagePost post={post} />}
+          displayState={showManageProfileDropdown}
+          setDisplayState={setShowManageProfileDropdown}
+        />
+      </div>
     </div>
   );
 };

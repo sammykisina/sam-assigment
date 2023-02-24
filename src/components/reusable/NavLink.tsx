@@ -9,7 +9,7 @@ const navlinkStyles = cva(
     variants: {
       type: {
         small:
-          "h-[38px] gap-[6px] text-[14px] bg-primary text-white px-4  py-2",
+          "h-[38px] gap-[6px] text-[14px] bg-primary text-white px-4  py-2 flex justify-center",
         medium: "h-[40px] gap-[8px] px-[16px] text-[16px] py-2 ",
         large:
           "h-[56px] gap-[8px] px-[20px] text-[18px] hover:text-white hover:bg-c_dark  py-2",
@@ -40,17 +40,10 @@ const NavLink: FC<NavLinkProps> = ({
   moreActions,
   active,
 }) => {
-  /**
-   * component states
-  //  */
-  // const { showSidebarState } = appAtoms;
-  // const setShowSidebar = useSetRecoilState(showSidebarState);
-
   return (
     <Link
       href={route.to}
       onClick={() => {
-        // setShowSidebar(false);
         moreActions && moreActions();
       }}
     >

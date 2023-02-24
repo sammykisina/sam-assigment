@@ -6,6 +6,7 @@ import { HiHome, HiOutlineUser } from "react-icons/hi2";
 import { useAuth } from "@/hooks";
 import { useDispatch } from "react-redux";
 import { setShowSidebarAction } from "../redux/reducer";
+import { useRouter } from "next/router";
 
 const TopHeader = () => {
   /**
@@ -14,6 +15,7 @@ const TopHeader = () => {
   // const { showSidebarState } = appAtoms;
   // const setShowSidebar = useSetRecoilState(showSidebarState);
   const dispatch = useDispatch();
+  const router = useRouter();
   const pathname = usePathname();
   const [show_profile_dropdown, setShowProfileDropdown] =
     useState<boolean>(false);
@@ -31,6 +33,9 @@ const TopHeader = () => {
         break;
       case "/auth/login":
         title = "Login.";
+        break;
+      case `/posts/${router?.query.id}`:
+        title = "Single Post";
         break;
       default:
         title = "Title";

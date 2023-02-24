@@ -30,7 +30,7 @@ const Dropdown: FC<DropdownProps> = ({
   useClickOutside(dropdownComponentRef, () => setDisplayState(false));
 
   return (
-    <div className="relative z-40" ref={dropdownComponentRef}>
+    <div className="relative z-30" ref={dropdownComponentRef}>
       <div className="group">
         <Icon
           icon={displayState ? active : inactive}
