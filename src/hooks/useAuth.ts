@@ -5,6 +5,9 @@ import type { LoginData } from "src/types/typings.t";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { Notifications } from "@/components";
+import jwt_decode from "jwt-decode";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentUser } from "../redux/reducer";
 
 export type User = {
   name: string;
@@ -16,22 +19,26 @@ const useAuth = () => {
   /**
    * hook states
    */
-  const [user, setUser] = useState<User | undefined>(undefined);
-  const [token, setToken] = useState<string | undefined>(undefined);
   const router = useRouter();
+  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.app.client.auth.user);
+  const isAuthenticated = useSelector(
+    (state: any) => state.app.client.auth.isAuthenticated
+  );
+  const token = Cookies.get("token");
 
   /**
    * hook functions
    */
   const { mutateAsync: loginMutateAsync, isLoading: isLogging } = useMutation({
-    mutationFn: (login_data: LoginData) => {
-      return AuthAPI.login(login_data);
+    mutationFn: (loginData: LoginData) => {
+      return AuthAPI.login(loginData);
     },
 
     onSuccess: async (data) => {
-      Cookies.set("user", JSON.stringify(data.user));
-      Cookies.set("token", data.token);
+      dispatch(setCurrentUser({ user: jwt_decode(data.token) }));
 
+      Cookies.set("token", data.token);
       await redirect();
       router.refresh();
       Notifications.successNotification(data.message);
@@ -42,32 +49,22 @@ const useAuth = () => {
 
   const logout = () => {
     Cookies.remove("token");
-    Cookies.remove("user");
-
-    setToken(undefined);
-    setUser(undefined);
 
     router.refresh();
   };
 
   useEffect(() => {
-    const user = Cookies.get("user") && JSON?.parse(Cookies.get("user") || "");
-    const token = Cookies.get("token");
-    if (token !== undefined || token !== "") {
-      setToken(token);
+    if (token !== undefined) {
+      dispatch(setCurrentUser({ user: jwt_decode(token || "") }));
     }
-
-    if (user !== undefined || user !== "") {
-      setUser(user);
-    }
-  }, []);
+  }, [token, dispatch]);
 
   return {
     user,
-    token,
     loginMutateAsync,
     isLogging,
     logout,
+    isAuthenticated,
   };
 };
 

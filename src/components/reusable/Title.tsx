@@ -1,15 +1,15 @@
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 interface TitleProps {
-  title: string;
-  title_styles?: string;
+  title: string | ReactNode;
+  titleStyles?: string;
 }
 
-const Title: FC<TitleProps> = ({ title, title_styles }) => {
+const Title: FC<TitleProps> = ({ title, titleStyles }) => {
   return (
     <h2
       className={`whitespace-nowrap font-semibold leading-tight tracking-wider ${
-        title_styles ? title_styles : "text-gray-900"
+        titleStyles ? titleStyles : "text-gray-900"
       }`}
     >
       {title}

@@ -15,13 +15,13 @@ const Notification = {
 
 export default Notification;
 
-const getNotified = (title: string, notification_color: string) => {
+const getNotified = (title: string, notificationColor: string) => {
   toast.custom(
     (t) => (
       <Notify
         t={t}
         title={title}
-        notification_wrapper_styles={`bg-white border shadow-md px-4 py-2 rounded-full ${notification_color}`}
+        notificationWrapperStyles={`bg-white border shadow-md px-4 py-2 rounded-full ${notificationColor}`}
       />
     ),
     {

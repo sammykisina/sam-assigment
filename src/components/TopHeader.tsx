@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { usePathname } from "next/navigation";
-import { useSetRecoilState } from "recoil";
-import { appAtoms } from "@/atoms";
-import { Dropdown, Icon, Profile, Title } from "@/components";
-import { HiOutlineUser } from "react-icons/hi2";
+import { Dropdown, Icon, NavLink, Profile, Title } from "@/components";
+import { HiHome, HiOutlineUser } from "react-icons/hi2";
 import { useAuth } from "@/hooks";
+import { useDispatch } from "react-redux";
+import { setShowSidebarAction } from "../redux/reducer";
 
 const TopHeader = () => {
   /**
    * component states
    */
-  const { showSidebarState } = appAtoms;
-  const setShowSidebar = useSetRecoilState(showSidebarState);
+  // const { showSidebarState } = appAtoms;
+  // const setShowSidebar = useSetRecoilState(showSidebarState);
+  const dispatch = useDispatch();
   const pathname = usePathname();
   const [show_profile_dropdown, setShowProfileDropdown] =
     useState<boolean>(false);
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   /**
    * component function
@@ -28,8 +29,8 @@ const TopHeader = () => {
       case "/":
         title = "Home";
         break;
-      case "/login":
-        title = "Title.";
+      case "/auth/login":
+        title = "Login.";
         break;
       default:
         title = "Title";
@@ -39,34 +40,51 @@ const TopHeader = () => {
   };
 
   return (
-    <nav className="border-c_dark flex h-[50px] items-center justify-between rounded-md border px-2 sm:px-0">
+    <nav className="flex h-[50px] items-center justify-between rounded-md border border-primary/10 px-2">
       <div className="flex items-center gap-x-4">
         <Icon
+          iconWrapperStyles={`${!isAuthenticated && "hidden"}`}
           icon={
             <HiOutlineMenuAlt3 className="text-c_green h-5 w-5 sm:hidden" />
           }
-          purpose={() => setShowSidebar((prevShowSidebar) => !prevShowSidebar)}
+          purpose={() => dispatch(setShowSidebarAction())}
         />
 
         {/* the current page title */}
-        {pathname && (
-          <Title
-            title={getTitle(pathname)}
-            title_styles="capitalize text-c_dark text-xl font-semibold tracking-wider"
-          />
-        )}
+        {pathname &&
+          (pathname === "/auth/login" ? (
+            <NavLink
+              route={{ to: "/", name: <HiHome className="icon" /> }}
+              fullWidth={false}
+              type="medium"
+            />
+          ) : (
+            <Title
+              title={getTitle(pathname)}
+              titleStyles="capitalize text-c_dark text-xl font-semibold tracking-wider"
+            />
+          ))}
       </div>
 
       {/* the rest of the icons */}
       <div className="flex items-center  gap-x-2">
         {/* the current user dropdown */}
-        {user && (
+        {isAuthenticated ? (
           <div>
             <Dropdown
               inactive={<HiOutlineUser className="icon" />}
-              dropdown_component={<Profile />}
-              display_state={show_profile_dropdown}
+              dropdownComponent={<Profile />}
+              displayState={show_profile_dropdown}
               setDisplayState={setShowProfileDropdown}
+            />
+          </div>
+        ) : (
+          <div className="px-2">
+            <NavLink
+              route={{ to: "/auth/login", name: "login" }}
+              fullWidth={false}
+              type="link"
+              active={pathname === "/auth/login" && "activeLink"}
             />
           </div>
         )}

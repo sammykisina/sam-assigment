@@ -4,15 +4,15 @@ import type { Toast } from "react-hot-toast";
 interface NotifyProps {
   t: Toast;
   title: string;
-  notification_wrapper_styles: string;
+  notificationWrapperStyles: string;
 }
 
-const Notify: FC<NotifyProps> = ({ t, title, notification_wrapper_styles }) => {
+const Notify: FC<NotifyProps> = ({ t, title, notificationWrapperStyles }) => {
   return (
     <section
       className={`${
         t.visible ? "animate-enter" : "animate-leave"
-      } ${notification_wrapper_styles}`}
+      } ${notificationWrapperStyles}`}
     >
       <span className="text-sm">{title}</span>
     </section>

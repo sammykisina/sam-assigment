@@ -1,42 +1,41 @@
-import { type FC, type ReactNode, useRef } from "react";
+import { type FC, type ReactNode, useRef, type Dispatch } from "react";
 import { Icon } from "@/components";
-import { type SetterOrUpdater } from "recoil";
 import { useClickOutside } from "@/hooks";
 
 interface DropdownProps {
   active?: ReactNode;
   inactive: ReactNode;
-  dropdown_component: ReactNode;
-  display_state: boolean;
-  setDisplayState: SetterOrUpdater<boolean>;
+  dropdownComponent: ReactNode;
+  displayState: boolean;
+  setDisplayState: Dispatch<React.SetStateAction<boolean>>;
   badge?: number;
 }
 
 const Dropdown: FC<DropdownProps> = ({
   active,
   inactive,
-  dropdown_component,
-  display_state,
+  dropdownComponent,
+  displayState,
   setDisplayState,
   badge,
 }) => {
   /**
-   * Component States
+   * component states
    */
-  const dropdown_component_ref = useRef<HTMLDivElement>(null);
+  const dropdownComponentRef = useRef<HTMLDivElement>(null);
 
   /**
-   * Component Functions
+   * component functions
    */
-  useClickOutside(dropdown_component_ref, () => setDisplayState(false));
+  useClickOutside(dropdownComponentRef, () => setDisplayState(false));
 
   return (
-    <div className="relative z-40" ref={dropdown_component_ref}>
+    <div className="relative z-40" ref={dropdownComponentRef}>
       <div className="group">
         <Icon
-          icon={badge ? active : inactive}
-          icon_wrapper_styles={`p-2 z-30  rounded-full relative ${
-            display_state && "bg-c_dark text-white"
+          icon={displayState ? active : inactive}
+          iconWrapperStyles={`p-2 z-30  rounded-full relative ${
+            displayState && "bg-primary text-white"
           }`}
           purpose={() => setDisplayState((prev) => !prev)}
         />
@@ -50,10 +49,10 @@ const Dropdown: FC<DropdownProps> = ({
 
       <div
         className={` ${
-          display_state ? "dropdown_content active" : "dropdown_content"
+          displayState ? "dropdownContent active" : "dropdownContent"
         }`}
       >
-        {dropdown_component}
+        {dropdownComponent}
       </div>
     </div>
   );

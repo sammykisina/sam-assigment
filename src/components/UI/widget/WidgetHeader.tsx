@@ -7,19 +7,19 @@ interface WidgetHeader {
   title: string;
 }
 
-const InfoWidgetHeader: FC<WidgetHeader> = ({ close, title }) => {
+const WidgetHeader: FC<WidgetHeader> = ({ close, title }) => {
   return (
-    <section className="border-c_gray  space-y-2 border-b  px-4">
+    <section className="space-y-2  border-b border-orange  px-4">
       <WidgetClose close={close} />
 
       <div className="flex items-center gap-2 px-3">
-        <div className="bg-c_yellow h-5 w-5 rounded-full" />
-        <Title title={title} title_styles="text-gray-900 tracking-wider" />
+        <div className="h-5 w-5 rounded-full bg-orange" />
+        <Title title={title} titleStyles="text-gray-900 tracking-wider" />
       </div>
 
-      <div className="bg-yellow/20 h-[0.3rem] w-full rounded-full" />
+      <div className="h-[0.3rem] w-full rounded-t-full bg-orange" />
     </section>
   );
 };
 
-export default InfoWidgetHeader;
+export default WidgetHeader;

@@ -1,18 +1,19 @@
 import { type AppType } from "next/dist/shared/lib/utils";
 import "../styles/globals.css";
-import { RecoilRoot } from "recoil";
 import { Layout } from "@/components";
+import { store } from "../redux/store";
+import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
+      <Provider store={store}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </RecoilRoot>
+      </Provider>
     </QueryClientProvider>
   );
 };

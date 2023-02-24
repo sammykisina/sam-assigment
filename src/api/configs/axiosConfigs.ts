@@ -1,17 +1,13 @@
 import { Notifications } from "@/components";
 import axios from "axios";
-import Cookies from "js-cookie";
-
-const token = Cookies.get("token");
 
 export const api = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: `Bearer ` + token,
   },
-  baseURL: "http://127.0.0.1:8000/api/v1",
+  baseURL: "https://jsonplaceholder.typicode.com",
 });
 
 // defining a custom error handler for all APIs

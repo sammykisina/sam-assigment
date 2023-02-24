@@ -1,23 +1,22 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ReactNode, FC } from "react";
 
-const button_styles = cva(
-  "flex items-center justify-center px-4 py-2 rounded-full  focus:outline-none whitespace-nowrap",
+const buttonStyles = cva(
+  "flex items-center justify-center px-4 py-2 rounded-full  focus:outline-none whitespace-nowrap disabled:cursor-not-allowed",
   {
     variants: {
       intent: {
-        primary: "bg-c_dark text-white",
-        primary_yellow: "bg-c_yellow text-c_dark hover:rounded-[1rem]",
-        secondary: "bg-c_gray",
+        primary: "bg-orange text-white",
+        secondary: "bg-secondary/10 text-secondary",
         danger: "bg-red-500 text-white",
-        link: "text-dark font-semibold",
+        link: "text-primary font-semibold",
       },
-      type: {
-        small: "h-[38px] gap-[6px] text-[14px]",
+      form: {
+        small: "h-[35px] gap-[6px] text-[12px]",
         medium: "h-[40px] gap-[8px] px-[16px] text-[16px]",
         large: "h-[56px] gap-[8px] px-[20px] text-[18px]",
       },
-      full_width: {
+      fullWidth: {
         true: "w-full",
         false: "w-fit",
       },
@@ -28,32 +27,29 @@ const button_styles = cva(
   }
 );
 
-interface ButtonProps extends VariantProps<typeof button_styles> {
+interface ButtonProps extends VariantProps<typeof buttonStyles> {
   title?: string | ReactNode;
-  icon?: ReactNode;
-  icon_wrapper_styles?: string;
   purpose?: () => void;
   disabled?: boolean;
+  type: "reset" | "button" | "submit" | undefined;
 }
 
 const Button: FC<ButtonProps> = ({
   intent,
-  full_width,
+  fullWidth,
   type,
-  icon,
+  form,
   title,
   purpose,
-  icon_wrapper_styles,
   disabled,
 }) => {
   return (
     <button
       onClick={purpose}
-      type="submit"
-      className={button_styles({ intent, full_width, type })}
+      type={type}
+      className={buttonStyles({ intent, fullWidth, form })}
       disabled={disabled}
     >
-      {icon && <span className={`${icon_wrapper_styles}`}>{icon}</span>}
       {title}
     </button>
   );

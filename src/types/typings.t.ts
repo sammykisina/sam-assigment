@@ -6,8 +6,20 @@ export type LoginData = {
 };
 
 export type Route = {
-  inactive_icon?: ReactNode;
-  active_icon?: ReactNode;
+  inactiveIcon?: ReactNode;
+  activeIcon?: ReactNode;
   name?: string | ReactNode;
   to: string;
+};
+
+export type SelectionOption = {
+  name: string;
+  value: string;
+};
+
+export type Post = {
+  id?: number;
+  body: string;
+  title: string;
+  userId: number;
 };

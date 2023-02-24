@@ -4,10 +4,12 @@ import { type Route } from "src/types/typings.t";
 const routes: Route[] = [
   {
     name: "Home",
-    inactive_icon: <HiOutlineHome className="icon" />,
-    active_icon: <HiHome className="icon" />,
+    inactiveIcon: <HiOutlineHome className="icon" />,
+    activeIcon: <HiHome className="icon" />,
     to: "/",
   },
 ];
 
-export default routes;
+const routers = { routes };
+
+export default routers;
