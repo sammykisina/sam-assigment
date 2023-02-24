@@ -16,7 +16,7 @@ const SinglePostInfo = () => {
    */
 
   return (
-    <section className="h-[40rem]  rounded-[2rem]  border p-4">
+    <section className="h-[46rem] rounded-[2rem]  border  p-4 sm:h-[40rem]">
       {isFetchingPost ? (
         <div className="flex h-[5rem] items-center justify-center">
           <SpinnerLoader color="fill-orange " />
@@ -44,7 +44,7 @@ const SinglePostInfo = () => {
       )}
 
       {/* comments */}
-      <div className="mt-5 h-[22rem] border p-2">
+      <div className="mt-5 h-[28rem]   p-2 sm:h-[22rem]">
         {/* title */}
         <Title title="Comments." />
 
@@ -56,7 +56,7 @@ const SinglePostInfo = () => {
           <div className="h-full">
             {comments?.length > 0 ? (
               <div
-                className="mt-2 h-[19rem] divide-y  divide-primary overflow-y-scroll scrollbar-hide
+                className="mt-2 h-[25rem] divide-y divide-primary  overflow-y-scroll border scrollbar-hide
               "
               >
                 {comments?.map((comment: any, commentIndex: number) => (
