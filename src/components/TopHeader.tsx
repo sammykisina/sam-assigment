@@ -50,9 +50,9 @@ const TopHeader = () => {
         <Icon
           iconWrapperStyles={`${!isAuthenticated && "hidden"}`}
           icon={
-            <HiOutlineMenuAlt3 className="text-c_green h-5 w-5 sm:hidden" />
+            <HiOutlineMenuAlt3 className="z-50 h-5 w-5 text-orange sm:hidden" />
           }
-          purpose={() => dispatch(setShowSidebarAction())}
+          purpose={() => dispatch(setShowSidebarAction({ showSidebar: true }))}
         />
 
         {/* the current page title */}

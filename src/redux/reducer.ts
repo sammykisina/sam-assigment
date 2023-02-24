@@ -24,8 +24,8 @@ export const ReducerSlice = createSlice({
   name: "fb3",
   initialState,
   reducers: {
-    setShowSidebarAction: (state) => {
-      state.client.showSidebar = !state.client.showSidebar;
+    setShowSidebarAction: (state, action) => {
+      state.client.showSidebar = action.payload.showSidebar;
     },
     setCurrentUser: (state, action) => {
       state.client.auth.isAuthenticated = action.payload.user ? true : false;

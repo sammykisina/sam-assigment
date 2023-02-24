@@ -1,7 +1,10 @@
 import { Button, Logo, NavLink } from "@/components";
-import { useAuth } from "@/hooks";
+import { useAuth, useClickOutside } from "@/hooks";
 import { routers } from "@/routers";
 import { usePathname } from "next/navigation";
+import { useRef } from "react";
+import { setShowSidebarAction } from "../redux/reducer";
+import { useDispatch } from "react-redux";
 
 const Sidebar = () => {
   /**
@@ -10,13 +13,21 @@ const Sidebar = () => {
   const { logout, isAuthenticated } = useAuth();
   const { routes } = routers;
   const pathname = usePathname();
+  const sidebarComponentRef = useRef<HTMLElement>(null);
+  const dispatch = useDispatch();
 
   /**
    * component functions
    */
+  useClickOutside(sidebarComponentRef, () =>
+    dispatch(setShowSidebarAction({ showSidebar: false }))
+  );
 
   return (
-    <aside className="relative z-50  flex h-screen w-[250px] flex-col justify-between border-x-2 border-primary p-2 pt-8 duration-300">
+    <aside
+      ref={sidebarComponentRef}
+      className="relative z-50  flex h-screen w-[250px] flex-col justify-between border-x-2 border-primary p-2 pt-8 duration-300"
+    >
       <div className="mt-5">
         {/* the logo */}
         <div className="flex justify-center">
@@ -32,6 +43,9 @@ const Sidebar = () => {
               type="medium"
               fullWidth={true}
               active={pathname === route.to && "navLinkActive"}
+              moreActions={() =>
+                dispatch(setShowSidebarAction({ showSidebar: false }))
+              }
             />
           ))}
         </ul>

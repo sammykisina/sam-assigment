@@ -40,6 +40,7 @@ const NavLink: FC<NavLinkProps> = ({
   moreActions,
   active,
 }) => {
+
   return (
     <Link
       href={route.to}
