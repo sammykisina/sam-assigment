@@ -78,6 +78,7 @@ const TopHeader = () => {
           <div>
             <Dropdown
               inactive={<HiOutlineUser className="icon" />}
+              active={<HiOutlineUser className="icon" />}
               dropdownComponent={<Profile />}
               displayState={show_profile_dropdown}
               setDisplayState={setShowProfileDropdown}

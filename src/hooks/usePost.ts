@@ -18,7 +18,7 @@ const usePost = () => {
    */
   const dispatch = useDispatch();
   const router = useRouter();
-  const postId = router?.query.id;
+  const postId = router?.query.id as string;
   const allPosts = useSelector(
     (state: any) => state.app.client.postsData.posts
   );
