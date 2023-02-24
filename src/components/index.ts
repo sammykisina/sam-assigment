@@ -46,3 +46,4 @@ export { default as SpinnerLoader } from "./reusable/SpinnerLoader";
 export { default as NavLink } from "./reusable/NavLink";
 export { default as Post } from "./reusable/Post";
 export { default as PostCreate } from "./reusable/PostCreate";
+export { default as Comment } from "./reusable/Comment";

@@ -10,12 +10,15 @@ import {
   setPostsData,
   setIsEditingPost,
 } from "src/redux/reducer";
+import { useRouter } from "next/router";
 
 const usePost = () => {
   /**
    * hook states
    */
   const dispatch = useDispatch();
+  const router = useRouter();
+  const postId = router?.query.id;
   const allPosts = useSelector(
     (state: any) => state.app.client.postsData.posts
   );
@@ -156,6 +159,30 @@ const usePost = () => {
       },
     });
 
+  const { data: comments, isLoading: isFetchingPostComments } = useQuery({
+    queryKey: ["comments", postId],
+    queryFn: async ({ queryKey }) => {
+      const [_, postId] = queryKey;
+      if (postId) {
+        return await PostAPI.getSinglePostComments(postId);
+      }
+
+      return [];
+    },
+  });
+
+  const { data: post, isLoading: isFetchingPost } = useQuery({
+    queryKey: ["post", postId],
+    queryFn: async ({ queryKey }) => {
+      const [_, postId] = queryKey;
+      if (postId) {
+        return await PostAPI.getSinglePostInfo(postId);
+      }
+
+      return [];
+    },
+  });
+
   return {
     allPosts,
     isFetchingAllPosts,
@@ -165,6 +192,10 @@ const usePost = () => {
     isUpdatingPost,
     deletePostMutateAsync,
     isDeletingPost,
+    comments,
+    isFetchingPostComments,
+    post,
+    isFetchingPost,
   };
 };
 

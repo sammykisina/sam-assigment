@@ -25,6 +25,11 @@ const PostAPI = {
     ),
 
   deletePost: async (postId: number) => API.delete(`/posts/${postId}`),
+
+  getSinglePostComments: async (postId: string) =>
+    API.get(`/posts/${postId}/comments`),
+
+  getSinglePostInfo: async (postId: string) => API.get(`/posts/${postId}`),
 };
 
 export default PostAPI;
