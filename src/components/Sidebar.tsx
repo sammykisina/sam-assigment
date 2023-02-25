@@ -26,7 +26,7 @@ const Sidebar = () => {
   return (
     <aside
       ref={sidebarComponentRef}
-      className="relative z-50  flex h-screen w-[250px] flex-col justify-between border-x-2 border-primary p-2 pt-8 duration-300"
+      className="relative z-40  flex h-screen w-[250px] flex-col justify-between border-x-2 border-primary p-2 pt-8 duration-300"
     >
       <div className="mt-5">
         {/* the logo */}

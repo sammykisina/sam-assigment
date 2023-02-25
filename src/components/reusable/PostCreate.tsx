@@ -20,8 +20,8 @@ const PostCreate = () => {
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="h-[5rem] w-full rounded-t-[2rem] border p-2">
-      <div className="flex items-center justify-between">
+    <div className="flex h-[5rem] w-full items-center rounded-t-[2rem] border p-2">
+      <div className="flex w-full items-center justify-between">
         <div>
           <img
             src={generateAvatar(user?.email)}

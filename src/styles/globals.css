@@ -93,7 +93,7 @@
 
   /* widget */
   .widget-wrapper {
-    @apply invisible fixed top-0 -right-full  z-50 grid h-full  w-full  transform place-items-end bg-[#00000080] pt-4 transition-all duration-300 ease-in;
+    @apply invisible  fixed top-0 -right-full  z-50 grid h-full  w-full  transform place-items-end bg-[#00000080] pt-4 transition-all duration-300 ease-in;
   }
 
   .widget-wrapper.show {

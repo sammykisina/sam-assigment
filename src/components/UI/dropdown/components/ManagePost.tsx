@@ -1,5 +1,11 @@
 import React, { FC } from "react";
-import { Button, DeletePostConfirmation, Modal, NavLink } from "@/components";
+import {
+  Button,
+  DeletePostConfirmation,
+  Icon,
+  Modal,
+  NavLink,
+} from "@/components";
 import {
   setShowCreateOrEditPost,
   setIsEditingPost,
@@ -9,6 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import type { Post } from "src/types/typings.t";
 import { useAuth } from "@/hooks";
+import { HiPencil, HiTrash } from "react-icons/hi2";
 
 type ManagePostProps = {
   post: Post;
@@ -22,7 +29,7 @@ const ManagePost: FC<ManagePostProps> = ({ post }) => {
   const { user } = useAuth();
 
   return (
-    <div className="flex flex-col gap-3 px-4">
+    <div className="flex flex-col gap-3 px-4 duration-300">
       {user?.userId === post?.userId && (
         <div className="flex gap-1">
           <Button
@@ -35,11 +42,9 @@ const ManagePost: FC<ManagePostProps> = ({ post }) => {
               dispatch(setShowCreateOrEditPost({ showCreateOrEditPost: true }));
             }}
           />
-          <Button
-            title="Delete Post"
-            intent="danger"
-            type="button"
-            purpose={() => {
+
+          <div
+            onClick={() => {
               dispatch(setGlobalPost({ globalPost: { ...post } }));
               dispatch(
                 setShowDeletePostConfirmationModal({
@@ -47,7 +52,11 @@ const ManagePost: FC<ManagePostProps> = ({ post }) => {
                 })
               );
             }}
-          />
+            className="flex cursor-pointer items-center gap-2 rounded-full border-red-400 px-2 text-red-500 hover:border"
+          >
+            <Icon icon={<HiTrash />} />
+            <span>Delete</span>
+          </div>
         </div>
       )}
 
