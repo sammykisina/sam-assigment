@@ -27,11 +27,11 @@ const Home: NextPage = () => {
         <PostCreate />
 
         {/* posts */}
-        <div className="h-[40rem] overflow-y-scroll border border-t-0">
+        <div className="h-[40rem] w-full  overflow-y-scroll border-t-0">
           {isFetchingAllPosts ? (
             "loading"
           ) : allPosts?.length > 0 ? (
-            <div className="flex flex-col gap-3 py-3 px-2 md:px-16">
+            <div className="flex flex-col items-center justify-center gap-3 py-3 px-2 md:px-16">
               {allPosts?.map((post: PostType, postIndex: number) => (
                 <Post key={postIndex} post={post} />
               ))}
