@@ -1,3 +1,4 @@
+import { useAuth } from "@/hooks";
 import { appUtils } from "@/utils";
 import React from "react";
 
@@ -6,9 +7,14 @@ const Comment = ({ comment }: { comment: any }) => {
    * component states
    */
   const { generateAvatar } = appUtils;
+  const { isAuthenticated } = useAuth();
 
   return (
-    <div className="p-2">
+    <div
+      className={`w-full p-2 ${
+        isAuthenticated ? "xmd:w-[75%]" : " sm:w-9/12 md:w-[70%]  xmd:w-[60%]"
+      }`}
+    >
       <div className="flex items-center gap-3">
         <div>
           <img
