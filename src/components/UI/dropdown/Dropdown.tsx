@@ -30,11 +30,11 @@ const Dropdown: FC<DropdownProps> = ({
   useClickOutside(dropdownComponentRef, () => setDisplayState(false));
 
   return (
-    <div className="relative z-30" ref={dropdownComponentRef}>
+    <div className="relative" ref={dropdownComponentRef}>
       <div className="group">
         <Icon
           icon={displayState ? active : inactive}
-          iconWrapperStyles={`p-2 z-30  rounded-full relative ${
+          iconWrapperStyles={`z-30 p-2 rounded-full relative ${
             displayState && "bg-primary text-white"
           }`}
           purpose={() => setDisplayState((prev) => !prev)}
@@ -49,7 +49,7 @@ const Dropdown: FC<DropdownProps> = ({
 
       <div
         className={` ${
-          displayState ? "dropdownContent active" : "dropdownContent"
+          displayState ? "dropdownContent active z-50" : "dropdownContent"
         }`}
       >
         {dropdownComponent}

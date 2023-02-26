@@ -12,7 +12,7 @@ const navlinkStyles = cva(
           "h-[38px] gap-[6px] text-[14px] bg-primary text-white px-4  py-2 flex justify-center",
         medium: "h-[40px] gap-[8px] px-[16px] text-[16px] py-2 ",
         large:
-          "h-[56px] gap-[8px] px-[20px] text-[18px] hover:text-white hover:bg-c_dark  py-2",
+          "h-[56px] gap-[8px] px-[20px] text-2xl  hover:text-white hover:bg-c_dark  py-2",
         link: "h-[38px] gap-[6px] text-[14px] px-4 hover:bg-orange hover:text-white  py-2 text-gray-900 font-bold",
       },
       fullWidth: {
@@ -22,7 +22,8 @@ const navlinkStyles = cva(
       active: {
         true: "bg-primary w-full text-white ",
         navLinkActive: "bg-orange/50",
-        activeLink: "text-white bg-orange px-2 py-2 flex justify-center ",
+        activeLink:
+          "text-white text-lg bg-orange px-2 py-2 flex justify-center",
       },
     },
   }
@@ -40,7 +41,6 @@ const NavLink: FC<NavLinkProps> = ({
   moreActions,
   active,
 }) => {
-
   return (
     <Link
       href={route.to}

@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { usePathname } from "next/navigation";
-import { Dropdown, Icon, NavLink, Profile, Title } from "@/components";
-import { HiHome, HiOutlineUser } from "react-icons/hi2";
+import {
+  CurrentNotifications,
+  Dropdown,
+  Icon,
+  NavLink,
+  Profile,
+  Title,
+} from "@/components";
+import { HiBell, HiHome, HiOutlineBell, HiOutlineUser } from "react-icons/hi2";
 import { useAuth } from "@/hooks";
 import { useDispatch } from "react-redux";
 import { setShowSidebarAction } from "../redux/reducer";
@@ -17,7 +24,9 @@ const TopHeader = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const pathname = usePathname();
-  const [show_profile_dropdown, setShowProfileDropdown] =
+  const [showProfileDropdown, setShowProfileDropdown] =
+    useState<boolean>(false);
+  const [showNotificationsDropdown, setShowNotificationsDropdown] =
     useState<boolean>(false);
   const { isAuthenticated } = useAuth();
 
@@ -33,6 +42,20 @@ const TopHeader = () => {
         break;
       case "/auth/login":
         title = "Login.";
+        break;
+      case "/explore":
+        title = "Explore";
+        break;
+      case "/reels":
+        title = "Reels";
+        break;
+
+      case "/profile":
+        title = "Profile";
+        break;
+
+      case "/shop":
+        title = "Shop";
         break;
       case `/posts/${router?.query.id}`:
         title = "Single Post";
@@ -74,23 +97,22 @@ const TopHeader = () => {
       {/* the rest of the icons */}
       <div className="flex items-center  gap-x-2">
         {/* the current user dropdown */}
-        {isAuthenticated ? (
-          <div>
+        {isAuthenticated && (
+          <div className="flex">
             <Dropdown
               inactive={<HiOutlineUser className="icon" />}
               active={<HiOutlineUser className="icon" />}
               dropdownComponent={<Profile />}
-              displayState={show_profile_dropdown}
+              displayState={showProfileDropdown}
               setDisplayState={setShowProfileDropdown}
             />
-          </div>
-        ) : (
-          <div className="px-2">
-            <NavLink
-              route={{ to: "/auth/login", name: "login" }}
-              fullWidth={false}
-              type="link"
-              active={pathname === "/auth/login" && "activeLink"}
+
+            <Dropdown
+              inactive={<HiOutlineBell className="icon" />}
+              active={<HiBell className="icon" />}
+              dropdownComponent={<CurrentNotifications />}
+              displayState={showNotificationsDropdown}
+              setDisplayState={setShowNotificationsDropdown}
             />
           </div>
         )}

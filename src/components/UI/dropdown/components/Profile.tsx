@@ -9,15 +9,38 @@ const Profile = () => {
   const { generateAvatar } = appUtils;
   const { user } = useAuth();
 
-  return (
-    <div className="flex h-[10rem] w-[20rem] items-center justify-center gap-4">
-      <img src={generateAvatar(user?.email || "")} className="rounded-full" />
+  /**
+   * component functions and reusable components
+   */
+  const ProfileInfo = ({ value, title }: { value: string; title: string }) => (
+    <div className="flex flex-col items-center justify-center ">
+      <span className="text-2xl font-bold text-white xs:text-lg">{value}</span>
+      <span className="text-lg font-bold text-primary/50 xs:text-sm">
+        {title}
+      </span>
+    </div>
+  );
 
-      <div className="flex flex-col gap-2">
-        <span className="w-fit rounded-full bg-[#170140]/10 px-3 py-1 text-sm capitalize leading-loose text-[#170140] shadow-sm">
-          {user?.name}
-        </span>
-        <span>{user?.email}</span>
+  return (
+    <div className="flex h-[20rem] w-[20rem] flex-col bg-orange/50 px-4 py-5">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-3">
+        <div className="rounded-full border-4 border-orange p-1 ">
+          <img
+            src={generateAvatar(user?.email)}
+            className="h-[5rem] w-[5rem] rounded-full"
+          />
+        </div>
+
+        <div className="flex flex-col items-center justify-center">
+          <span className="text-xl font-bold tracking-wider">{user?.name}</span>
+          <span className="text-base">{`"${user.email}"`}</span>
+        </div>
+      </div>
+
+      <div className="grid h-[8rem] w-full grid-cols-3 divide-x divide-orange  rounded-2xl border bg-orange/10">
+        <ProfileInfo value="100" title="Posts" />
+        <ProfileInfo value="1,5k" title="Followers" />
+        <ProfileInfo value="500" title="Following" />
       </div>
     </div>
   );

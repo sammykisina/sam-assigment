@@ -19,6 +19,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
     (state: any) => state.app.client.showDeletePostConfirmationModal
   );
 
+  // if (!isAuthenticated) return <WelcomePage />;
+
   return (
     <section className="relative mx-auto flex w-full max-w-[1200px]  sm:px-[20px]">
       {/* the Toaster */}

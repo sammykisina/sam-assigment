@@ -35,6 +35,7 @@ export { default as DeletePostConfirmation } from "../components/UI/modal/compon
  */
 export { default as Profile } from "./UI/dropdown/components/Profile";
 export { default as ManagePost } from "./UI/dropdown/components/ManagePost";
+export { default as CurrentNotifications } from "./UI/dropdown/components/CurrentNotifications";
 
 /**
  * Reusable
