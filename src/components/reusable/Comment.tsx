@@ -11,7 +11,7 @@ const Comment = ({ comment }: { comment: any }) => {
 
   return (
     <div
-      className={`w-full p-2 ${
+      className={`w-full rounded-[2.5rem] bg-white py-2 px-4 ${
         isAuthenticated ? "xmd:w-[75%]" : " sm:w-9/12 md:w-[70%]  xmd:w-[60%]"
       }`}
     >

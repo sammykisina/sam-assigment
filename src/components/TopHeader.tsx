@@ -58,7 +58,7 @@ const TopHeader = () => {
         title = "Shop";
         break;
       case `/posts/${router?.query.id}`:
-        title = "Single Post";
+        title = "Post";
         break;
       default:
         title = "Title";
