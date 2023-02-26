@@ -14,10 +14,8 @@ const Profile = () => {
    */
   const ProfileInfo = ({ value, title }: { value: string; title: string }) => (
     <div className="flex flex-col items-center justify-center ">
-      <span className="text-2xl font-bold text-white xs:text-lg">{value}</span>
-      <span className="text-lg font-bold text-primary/50 xs:text-sm">
-        {title}
-      </span>
+      <span className="text-lg font-bold text-white">{value}</span>
+      <span className="text-sm font-bold text-primary/50">{title}</span>
     </div>
   );
 
