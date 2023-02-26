@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           <PostCreate />
 
           {/* posts */}
-          <div className="h-[40rem] w-full  overflow-y-scroll border-t-0">
+          <div className="h-[40rem] w-full  overflow-y-scroll border-t-0  scrollbar-hide">
             {isFetchingAllPosts ? (
               "loading"
             ) : allPosts?.length > 0 ? (

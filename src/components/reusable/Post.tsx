@@ -27,7 +27,7 @@ const Post: FC<PostProps> = ({ post }) => {
 
   return (
     <div
-      className={`w-full rounded-[2.5rem] bg-white p-2 shadow-md  ${
+      className={`w-full rounded-[2.5rem] bg-white p-2 shadow  ${
         isAuthenticated ? " xmd:w-[75%]" : " sm:w-9/12 md:w-[70%]  xmd:w-[60%]"
       }`}
     >
