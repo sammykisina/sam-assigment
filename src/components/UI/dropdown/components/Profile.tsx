@@ -35,7 +35,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="grid h-[8rem] w-full grid-cols-3 divide-x divide-orange  rounded-2xl border bg-orange/10">
+      <div className="grid h-[5rem] w-full grid-cols-3 divide-x divide-orange  rounded-2xl border bg-orange/10">
         <ProfileInfo value="100" title="Posts" />
         <ProfileInfo value="1,5k" title="Followers" />
         <ProfileInfo value="500" title="Following" />

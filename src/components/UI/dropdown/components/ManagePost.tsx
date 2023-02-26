@@ -29,7 +29,7 @@ const ManagePost: FC<ManagePostProps> = ({ post }) => {
   const { user } = useAuth();
 
   return (
-    <div className="flex flex-col gap-3 px-4 duration-300">
+    <div className="flex flex-col gap-3 border bg-orange/5 px-4 py-3 duration-300">
       {user?.userId === post?.userId && (
         <div className="flex gap-1">
           <Button
