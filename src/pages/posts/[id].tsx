@@ -11,7 +11,7 @@ const SinglePostInfo = () => {
    */
 
   return (
-    <section className="h-[47.5rem] overflow-y-scroll  p-4 scrollbar-hide   xs:h-[40rem] sm:h-[40rem]">
+    <section className="h-[47.5rem] overflow-y-scroll  scrollbar-hide   xs:h-[40rem] sm:h-[40rem]">
       {isFetchingPost ? (
         <div className="flex h-[15rem] items-center justify-center">
           <SpinnerLoader color="fill-orange " />
