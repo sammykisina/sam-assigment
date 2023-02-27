@@ -55,6 +55,7 @@ const Post: FC<PostProps> = ({ post }) => {
           setDisplayState={setShowManageProfileDropdown}
         />
       </div>
+
       {/* image */}
       <div
         className={`h-[16rem] w-full  rounded-[2rem] ${

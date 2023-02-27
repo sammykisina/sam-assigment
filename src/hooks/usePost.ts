@@ -22,9 +22,9 @@ const usePost = () => {
   const allPosts = useSelector(
     (state: any) => state.app.client.postsData.posts
   );
-  const isFetchingAllPosts = useSelector(
-    (state: any) => state.app.client.postsData.isFetchingPosts
-  );
+  // const isFetchingAllPosts = useSelector(
+  //   (state: any) => state.app.client.postsData.isFetchingPosts
+  // );
   const globalPost = useSelector(
     (state: any) => state.app.client.postManagement.globalPost
   );
@@ -32,7 +32,7 @@ const usePost = () => {
   /**
    * hook functions
    */
-  useQuery({
+  const { data: posts, isLoading: isFetchingAllPosts } = useQuery({
     queryKey: ["posts"],
     queryFn: async () => {
       return await PostAPI.getPosts();
@@ -184,7 +184,7 @@ const usePost = () => {
   });
 
   return {
-    allPosts,
+    posts,
     isFetchingAllPosts,
     createPostMutateAsync,
     isCreatingPost,

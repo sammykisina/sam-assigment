@@ -1,4 +1,4 @@
-import { Logo, NavLink, Post, PostCreate } from "@/components";
+import { Logo, NavLink, Post, PostCreate, SpinnerLoader } from "@/components";
 import { useAuth, usePost } from "@/hooks";
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   /**
    * page states
    */
-  const { isFetchingAllPosts, allPosts } = usePost();
+  const { posts, isFetchingAllPosts } = usePost();
   const { isAuthenticated } = useAuth();
 
   /**
@@ -31,10 +31,12 @@ const Home: NextPage = () => {
           {/* posts */}
           <div className="h-[40rem] w-full  overflow-y-scroll border-t-0  scrollbar-hide">
             {isFetchingAllPosts ? (
-              "loading"
-            ) : allPosts?.length > 0 ? (
+              <div className="flex h-full items-center justify-center">
+                <SpinnerLoader color="fill-orange" />
+              </div>
+            ) : posts?.length > 0 ? (
               <div className="flex flex-col items-center justify-center gap-3 py-3 px-2 md:px-16">
-                {allPosts?.map((post: PostType, postIndex: number) => (
+                {posts?.map((post: PostType, postIndex: number) => (
                   <Post key={postIndex} post={post} />
                 ))}
               </div>
